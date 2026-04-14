@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Window Cleaning Quote Calculator</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #e9f1ff;
+        }
+
+        /* NAV */
+        .nav {
+            list-style: none;
+            margin: 0;
+            padding: 15px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 20px;
+            background-color: #1f3b57;
+        }
+
+        .nav li {
+            display: inline;
+        }
+
+        .nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .nav a:hover {
+            text-decoration: underline;
+        }
+
+       .header {
+    height: 250px;
+    background-image: url('assets/img/cresty.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    position: relative;
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+        .header::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+        }
+
+        .header h1 {
+            position: relative;
+            font-size: 40px;
+        }
+
+        /* CONTAINER */
+        .container {
+            max-width: 700px;
+            margin: 30px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 10px;
+            width: 100%;
+            background: #1f3b57;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #345b7a;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVIGATION (your required format) -->
+<ul class="nav">
+    <li class="nav-item"><a href="index.html">Home</a></li>
+    <li class="nav-item"><a href="resume.html">Resume</a></li>
+    <li class="nav-item"><a href="windowcleaning.html">Window Cleaning</a></li>
+    <li class="nav-item"><a href="funwithai.html">AI</a></li>
+</ul>
+
+<!-- HEADER -->
+<div class="header">
+    <h1>Window Cleaning Quote Calculator</h1>
+</div>
+
+<!-- APP -->
+<div class="container">
+
+    <label>Small Windows ($2 each)</label>
+    <input type="number" id="small" value="0">
+
+    <label>Medium Windows ($4 each)</label>
+    <input type="number" id="medium" value="0">
+
+    <label>Large Windows ($6 each)</label>
+    <input type="number" id="large" value="0">
+
+    <label>Service Type</label>
+    <select id="service">
+        <option value="outside">Exterior Only</option>
+        <option value="both">Exterior + Interior (Interior 50% Off))</option>
+    </select>
+
+    <button onclick="calculate()">Calculate Quote</button>
+
+    <div class="result" id="result">Total: $0</div>
+</div>
+
+<script>
+function calculate() {
+    let small = Number(document.getElementById("small").value);
+    let medium = Number(document.getElementById("medium").value);
+    let large = Number(document.getElementById("large").value);
+
+    let service = document.getElementById("service").value;
+
+    let total = (small * 2) + (medium * 4) + (large * 6);
+
+    if (service === "both") {
+        total = total * 1.5;
+    }
+
+    document.getElementById("result").innerText =
+        "Total: $" + total.toFixed(2);
+}
+</script>
+
+</body>
+</html>
